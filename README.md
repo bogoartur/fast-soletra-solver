@@ -30,8 +30,10 @@ Este projeto usa **Python** e a biblioteca **Selenium** para identificar rapidam
    pip install selenium
 3. Baixe o geckodriver (se estiver usando Firefox) e coloque-o no PATH.
 4. Clone este repositório:
+   ```bash
    git clone https://github.com/seu-usuario/fast-soletra-solver.git
 5. Execute o script:
+   ```bash
    python removendoConjugados.py
    
 ## 📊 **Histórico de Performance**
