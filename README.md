@@ -40,7 +40,7 @@ Este projeto usa **Python** e a biblioteca **Selenium** para identificar rapidam
 | **Data**   | **Palavras Encontradas** | **Tempo Levado** |
 |------------|---------------------------|------------------|
 | **07/12**  | 59/59                    | 55s 🏆           |
-| **08/12**  | xx/xx                    | xxs 🚀           |
+| **08/12**  | 72/91                    | 1m25s 🚀           |
 
 ---
 
