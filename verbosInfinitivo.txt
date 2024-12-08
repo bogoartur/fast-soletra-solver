@@ -191,7 +191,7 @@ indispor
 prepor
 pospor
 supor
-pôr
+por
 conter
 ater
 manter

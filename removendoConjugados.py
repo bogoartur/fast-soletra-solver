@@ -8,27 +8,27 @@ import time
 
 def respostasSoletra():
     respostasPassadas = []
-    with open("respostasSoletra.txt") as respostas:
+    with open("respostasSoletra.txt", encoding="utf-8") as respostas:
         for palavras in respostas:
             respostasPassadas.append(palavras.strip("\n"))
     return respostasPassadas
 
 def updateTodasPalavrasSemAcento():
     respostasPassadas = respostasSoletra()
-    with open("todasPalavrasSemAcento.txt") as arquivo:
+    with open("todasPalavrasSemAcento.txt", encoding="utf-8") as arquivo:
         linhas = arquivo.readlines()
 
         palavrasExistentes = {linha.strip() for linha in linhas}
-    with open("todasPalavrasSemAcento.txt", "a") as arquivo:
+    with open("todasPalavrasSemAcento.txt", "a", encoding="utf-8") as arquivo:
         for palavra in respostasPassadas:
             if palavra not in palavrasExistentes:
                 arquivo.write(palavra + "\n")
                 palavrasExistentes.add(palavra)
 def updateVerbosConjugados():
     respostasPassadas = respostasSoletra()
-    with open("verbosConjugados.txt") as arquivo:
+    with open("verbosConjugados.txt", encoding="utf-8") as arquivo:
         linhas = arquivo.readlines()
-    with open("verbosConjugados.txt", "w") as arquivo:
+    with open("verbosConjugados.txt", "w", encoding="utf-8") as arquivo:
         for linha in linhas:
             if linha.strip("\n") not in respostasPassadas and len(linha.strip("\n")) > 3:
                 arquivo.write(linha)
@@ -63,13 +63,13 @@ def getLetasOpcionais():
 letrasOpcionais = getLetasOpcionais()
 print(letraCentral, letrasOpcionais)
 
-alfabeto = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"]
+alfabeto = ["a", "b", "ç", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"]
 alfabeto.remove(letraCentral)
 alfabetoSemOpcionais = list(set(alfabeto) - set(letrasOpcionais))
 
 def getPalavrasPossiveis():
     palavrasPossiveis = []
-    with open("todasPalavrasSemAcento.txt", "r") as arquivo:
+    with open("todasPalavrasSemAcento.txt", "r", encoding="utf-8") as arquivo:
         for palavra in arquivo:
             palavra = palavra.strip().lower()
             if len(palavra) > 3:
@@ -96,7 +96,7 @@ def contaLetrasUnicas(palavra):
 def getVerbosConjugados():
     verbosConjugados = []
     updateVerbosConjugados()
-    with open("verbosConjugados.txt") as arquivo:
+    with open("verbosConjugados.txt", encoding="utf-8") as arquivo:
         for palavra in arquivo:
             palavra = palavra.strip().lower()
             verbosConjugados.append(palavra)
@@ -104,7 +104,7 @@ def getVerbosConjugados():
 
 def getVerbosInfinitivo():
     verbosInfinitivo = []
-    with open("verbosInfinitivo.txt") as arquivo:
+    with open("verbosInfinitivo.txt", encoding="utf-8") as arquivo:
         for palavra in arquivo:
             palavra = palavra.strip().lower()
             if len(palavra) > 3:
@@ -116,10 +116,10 @@ verbosConjugados = getVerbosConjugados()
 
 verbosSemInfinitivos = list(set(verbosConjugados) - set(verbosInfinitivo))
 
-with open("conjugadosARemover.txt", "a") as arquivo:
-    for i in verbosSemInfinitivos:
-        if not (str(i).endswith("ado") or str(i).endswith("ido") or str(i).endswith("edo") or str(i).endswith("odo") or str(i).endswith("udo")):
-            arquivo.write(i + '\n')
+#with open("conjugadosARemover.txt", "a") as arquivo:
+ #   for i in verbosSemInfinitivos:
+ #       if not (str(i).endswith("ado") or str(i).endswith("ido") or str(i).endswith("edo") or str(i).endswith("odo") or str(i).endswith("udo")):
+   #         arquivo.write(i + '\n')
 
 palavrasPossiveis = list(set(palavrasPossiveis) - set(verbosSemInfinitivos))
 palavrasPossiveis = organizar(palavrasPossiveis)
@@ -130,13 +130,13 @@ def tentarPalavrasPossiveis():
     for palavra in palavrasPossiveis:
         tamanho = len(palavra)
         ActionChains(driver).send_keys(palavra).send_keys(Keys.ENTER).perform()
-        time.sleep(0.1)
+        time.sleep(0.2)
         for n in range(tamanho):
             apagarTudo.key_action.send_keys(Keys.BACKSPACE)
             time.sleep(0.1)
+test_text = ["caca", "caça"]
 
-
-
+print(palavrasPossiveis)
 tentarPalavrasPossiveis()
         
 
